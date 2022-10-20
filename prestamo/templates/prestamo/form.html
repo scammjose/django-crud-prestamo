@@ -1,0 +1,66 @@
+<!-- <form enctype="multipart/form-data" method="post">
+  {% csrf_token %}
+  {% for campo in formulario %}
+    <div class="mb-3">
+      <label for="" class="form-label">{{ campo.label }}:</label>
+
+      {% if campo.name == 'equipo_id'%}
+      <br>
+      <input type="text" class="form-control" name="{{ campo.name }}" 
+        id="" aria-describedby="helpId" placeholder="{{ campo.label }}" value="" maxlength="6" minlength="6">
+      {%else%}
+      <input type="{{ campo.field.widget.input_type }}" class="form-control" name="{{ campo.name }}" 
+        id="" aria-describedby="helpId" placeholder="{{ campo.label }}" value="{{ campo.value | default:'' }}">
+      {% endif %}
+    </div>
+    <div class="col-12 help-text">{{ campo.errors }}</div>
+  {% endfor %}
+  <input name="" id="" class="btn btn-success" type="submit" value="Enviar">
+  <a name="" id="" class="btn btn-primary" href="{% url 'prestamo' %}" role="button">Cancelar</a>
+</form> -->
+<form enctype="multipart/form-data" method="post">
+  {% csrf_token %}
+  
+    <div class="mb-3">
+      <label for="" class="form-label">Matricula:</label>
+      <input type="text" class="form-control" name="matricula" 
+        id="" aria-describedby="helpId" placeholder="Matricula" required value="">
+      <!-- <br>
+      <label for="" class="form-label">Equipo:</label>
+      <input type="text" class="form-control" name="equipo_id" 
+        id="e1" aria-describedby="helpId" placeholder="Codigo de equipo" value="" maxlength="6" minlength="6"> -->
+        <br>
+      <label for="" class="form-label">Equipo:</label>
+        <select class="form-control" name="codigo[]" required id="">
+          <option value="">--Selecciona un equipo--</option>
+          {% for i in data %}
+          <option value="{{i.id}}">{{i.nombre}}</option>
+          {% endfor %}
+        </select>
+        <span id="append-div"></span>
+        <br>
+        <button class="btn btn-warning" id="append">&#10010; Equipo</button>
+    </div>
+
+  <input name="" id="" class="btn btn-success" type="submit" value="Enviar">
+  <a name="" id="" class="btn btn-primary" href="{% url 'prestamo' %}" role="button">Cancelar</a>
+</form>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+<script>
+$(function(){
+  var boton=document.getElementById("append");
+  var contador=1
+  boton.onclick=function(){
+    contador++;
+    console.log(contador);
+  }
+  $(document).on('click', '#append', function(e){
+    e.preventDefault();
+      $('#append-div').append(
+        '<br><select class="form-control" name="codigo[]" id=""><option value="">--Selecciona un equipo--</option>{% for i in data %}<option value="{{i.id}}">{{i.nombre}}</option>{% endfor %}</select>'
+      );
+    });
+});
+</script>

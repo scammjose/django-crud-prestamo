@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block titulo %} Editar Docente {% endblock %}
+
+{% block contenido %}
+
+<div class="card">
+    <div class="card-header">
+        Editar información del docente
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">Datos del docente</h4>
+        {% include 'docentes/form.html' %}
+    </div>
+</div>
+
+{% endblock %}
