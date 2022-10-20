@@ -1,10 +1,10 @@
 from django.db import connection
 from django.shortcuts import redirect, render
 from equipos.models import Equipos
-from prestamo.models import Prestamo
-
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required(login_url='login')
 def prestamo(request):
     # prestamo=Prestamo.objects.all()
 
@@ -14,7 +14,7 @@ def prestamo(request):
     results=cursor.fetchall()
     return render(request,'prestamo/prestamo.html',{'data':results})
 
-
+@login_required(login_url='login')
 def prestar(request):
     data=Equipos.objects.all()
     if request.method=="POST":
@@ -29,6 +29,7 @@ def prestar(request):
             return redirect('prestamo')
     return render(request,'prestamo/prestar.html',{'data':data})
 
+@login_required(login_url='login')
 def quitar(request,id):
     cursor=connection.cursor()
     cursor.execute("call quitar_prestamo("+str(id)+")")
