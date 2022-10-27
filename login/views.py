@@ -1,6 +1,5 @@
 from django.contrib import messages
 from django.shortcuts import redirect, render
-from django.contrib.auth.forms import UserCreationForm
 from .forms import UserRegistroForm
 from django.contrib.auth.decorators import login_required
 
@@ -12,7 +11,7 @@ def registro(request):
         if form.is_valid():
             form.save()
             username=form.cleaned_data['username']
-            messages.success(request,'Usuario '+username+' creado')
+            messages.success(request,'Usuario '+username+' creado correctamente')
             return redirect('inicio')
     else:
         form=UserRegistroForm()

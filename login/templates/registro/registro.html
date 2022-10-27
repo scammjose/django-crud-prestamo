@@ -8,6 +8,8 @@
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" id="submit" class="btn btn-success">Enviar</button>
+    <a name="" id="" class="btn btn-primary" href="{% url 'inicio' %}" role="button">Cancelar</a>
 </form>
+    
 
 {% endblock %}
