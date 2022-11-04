@@ -3,13 +3,104 @@
 {% block titulo %} Registro {% endblock %}
 
 {% block contenido %}
-
 <form action="" class="form" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" id="submit" class="btn btn-success">Enviar</button>
-    <a name="" id="" class="btn btn-primary" href="{% url 'inicio' %}" role="button">Cancelar</a>
-</form>
-    
+    <!-- {{ form.as_p }} -->
+    {{ field.help_text }}
+    {% if form.username.errors %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>{{ form.username.errors }}</strong>
+            <button type="button" class="btn-close close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% elif form.email.errors %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>{{ form.email.errors }}</strong>
+            <button type="button" class="btn-close close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% elif form.password2.errors %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>{{ form.password2.errors }}</strong>
+            <button type="button" class="btn-close close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
 
+
+    {% load widget_tweaks %}
+
+    <div class="card mb-4">
+        <div class="card-header">Datos del Usuario</div>
+        <div class="card-body">
+            <fieldset>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <div class="row justify-content-between text-left">
+                            <div class="form-group col-sm-6 flex-column d-flex"><label class="form-control-label px-3">Nombre:</label>{{ form.first_name | attr:'placeholder:Ingresa tu nombre' | add_class:'form-control' }}</div>
+                            <div class="form-group col-sm-6 flex-column d-flex"><label class="form-control-label px-3">Apellido:</label>{{ form.last_name | attr:'placeholder:Ingresa tu apellido' | add_class:'form-control' }}</div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <div class="row justify-content-between text-left">
+                            <div class="form-group col-sm-6 flex-column d-flex"><label class="form-control-label px-3">Usuario:</label>{{ form.username | attr:'placeholder:Ingresa tu usuario' | add_class:'form-control' }}</div>
+                            <div class="form-group col-sm-6 flex-column d-flex"><label class="form-control-label px-3">Correo:</label>{{ form.email | attr:'placeholder:Ingresa tu correo' | add_class:'form-control' }}</div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <div class="row justify-content-between text-left">
+                            <div class="form-group col-sm-6 flex-column d-flex"><label class="form-control-label px-3">Contraseña:</label>{{ form.password1 | attr:'placeholder:Ingresa tu contraseña' | add_class:'form-control'}}</div>
+                            <div class="form-group col-sm-6 flex-column d-flex"><label class="form-control-label px-3">Confirmar Contraseña:</label>{{ form.password2 | attr:'placeholder:Vuelve a escribir tu contraseña' | add_class:'form-control' }}</div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <!-- <div class="form-group">
+                    <div class="col-md-12">
+                        <div class="row justify-content-between text-left">
+                            <div class="form-group col-sm-6 flex-column d-flex">
+                                <label class="form-control-label px-3">Administrador:</label>
+                                {{ form.is_superuser }}
+                            </div>
+                            <div class="form-group col-sm-6 flex-column d-flex">
+                                <label class="form-control-label px-3">Privilegios:</label>
+                                {{ form.is_staff }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br> -->
+            </fieldset>
+        </div>
+    </div>
+
+
+    <!-- <fieldset>
+        <div class="form-group">
+            <div class="col-md-6">
+                <div class="row justify-content-between text-left">
+                   {{form.as_p}}
+                   <br>
+                </div>
+            </div>
+        </div>
+    </fieldset> -->
+
+
+
+    <div class="form-group">
+        <div class="col-md-6">
+            <div class="row justify-content-between text-left">
+                <div class="form-group col-sm-6 flex-column d-flex"><button type="submit" id="submit" class="btn btn-success">Enviar</button></div>
+                <div class="form-group col-sm-6 flex-column d-flex"><a name="" id="" class="btn btn-primary" href="{% url 'inicio' %}" role="button">Cancelar</a></div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+</form>
 {% endblock %}

@@ -38,7 +38,7 @@
 
                         {% if e.status == 0 %}<td class="table-success">Disponible</td>
                         {% elif e.status == 1 %}<td class="table-warning">En prestamo</td>
-                        {% elif e.status == 2 %}<td class="table-danger">En mantenimiento</td>
+                        {% elif e.status == 2 %}<td class="table-danger">No disponible</td>
                         {% endif %}
                         <td>
                             <a name="" id="" class="btn btn-info" href="{% url 'editar_equipo' e.id %}" role="button">Editar</a> |

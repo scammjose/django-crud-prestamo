@@ -1,0 +1,22 @@
+<form enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    
+      <div class="mb-3">
+        <label for="" class="form-label">Matricula:</label>
+        <input type="text" class="form-control" name="matricula" 
+          id="" aria-describedby="helpId" placeholder="Matricula" required value="">
+
+          <br>
+        <label for="" class="form-label">Laboratorio:</label>
+          <select class="form-control" name="codigo" required id="">
+            <option value="">--Selecciona un laboratorio--</option>
+            {% for i in data %}
+            <option value="{{i.id}}">{{i.nombre}}</option>
+            {% endfor %}
+          </select>
+      </div>
+  
+    <input name="" id="" class="btn btn-success" type="submit" value="Enviar">
+    <a name="" id="" class="btn btn-primary" href="{% url 'prestamo_lab' %}" role="button">Cancelar</a>
+  </form>
+  

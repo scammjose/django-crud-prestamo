@@ -1,6 +1,5 @@
 from django.db import connection
 from django.shortcuts import redirect, render
-from django.template import RequestContext
 from equipos.models import Equipos
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -18,7 +17,8 @@ def prestamo(request):
 
 @login_required(login_url='login')
 def prestar(request):
-    data=Equipos.objects.all()
+    # data=Equipos.objects.all()
+    data=Equipos.objects.filter(status=0)
     if request.method=="POST":
         if request.POST.get('matricula') and request.POST.getlist('codigo[]'):
             matricula=request.POST.get('matricula')

@@ -22,4 +22,7 @@ urlpatterns = [
     path('',include('equipos.urls')),
     path('',include('prestamo.urls')),
     path('',include('login.urls')),
+    path('',include('laboratorio.urls')),
+    path('',include('prestamo_lab.urls')),
+    path('',include('inventarios.urls')),
 ]

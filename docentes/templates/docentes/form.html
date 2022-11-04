@@ -9,17 +9,19 @@
         <img src="{{MEDIA_URL}}/imagenes/{{campo.value}}" width="100" alt="">
         {% endif %}
 
-        <!-- {% if campo.name == 'categoria'%}
+
+        {% if campo.name == 'status' %}
         <br>
         <select class="form-control form-select" name="{{ campo.name }}" id="">
-          <option value="1">HDMI</option>
-          <option value="2">LAPTOP</option>
-        </select> -->
-        
-        <!-- {%else%} -->
+          <option value="">--Seleccina un estado--</option>
+          <option value="0" {% if campo.value == 0 %} selected {% endif %} >Disponible</option>
+          <option value="1" {% if campo.value == 1 %} selected {% endif %} >Con prestamo</option>
+          <option value="2" {% if campo.value == 2 %} selected {% endif %} >Suspendido</option>
+        </select>
+        {%else%}
         <input type="{{ campo.field.widget.input_type }}" class="form-control" name="{{ campo.name }}" 
           id="" aria-describedby="helpId" placeholder="{{ campo.label }}" value="{{ campo.value | default:'' }}">
-        <!-- {% endif %} -->
+        {% endif %}
       </div>
       <div class="col-12 help-text">{{ campo.errors }}</div>
     {% endfor %}

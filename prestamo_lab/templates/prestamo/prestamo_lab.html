@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block titulo %} Prestamos de laboratorios {% endblock %}
+
+{% block contenido %}
+<div class="card">
+    <div class="card-header">
+        <a name="" id="" class="btn btn-success" href="{% url 'prestar_lab' %}" role="button">Prestar</a>
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">Prestamos</h4>
+        <div class="table-responsive">
+            <table class="table" id="table-prestamos">
+                <thead>
+                    <tr>
+                        <th scope="col">Matricula</th>
+                        <th scope="col">Foto</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Laboratorio</th>
+                        <th scope="col">Hora de prestamo</th>
+                        <th scope="col">Hora de entrega</th>
+                        <th scope="col">Estado</th> 
+                        <th scope="col">Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in data %}
+                    <tr>
+                        <td>{{p.1}}</td>
+                        <td><img src="imagenes/{{p.9}}" height="100"></td>
+                        <td>{{p.7}} {{p.8}}</td>
+                        <td>{{p.6}}</td>                        
+                        <td>{{p.3}}</td>
+                        <td>{{p.4}}</td>
+                        {% if p.5 == 0 %}<td class="table-success">Entregado</td>
+                        {% elif p.5 == 1 %}<td class="table-warning">Con prestamo</td>
+                        {% endif %}
+
+                        {% if p.5 == 0 %}<td>N/A</td>
+                        {% elif p.5 == 1 %}<td><a name="" id="" class="btn btn-danger" href="{% url 'quitar_prestamo_lab' p.0 %}" role="button">Quitar</a></td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</div>
+{% endblock %}

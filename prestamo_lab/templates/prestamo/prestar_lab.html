@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block titulo %} Agregar prestamo{% endblock %}
+
+{% block contenido %}
+
+<div class="card">
+    <div class="card-header">
+        Prestamo
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">Por favor llena los campos</h4>
+        {% include 'prestamo/form_lab.html' %}
+    </div>
+</div>
+
+{% endblock %}

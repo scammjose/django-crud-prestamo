@@ -1,12 +1,34 @@
 {% extends "base.html" %}
 
-{% block titulo %} Login {% endblock %}
+{% block titulo %} Iniciar Sesión {% endblock %}
 
 {% block contenido %}
 
 <form action="" class="form" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    <!-- {{ form.as_p }} -->
+    <!-- {{ form.non_field_errors }} -->
+    {% if form.non_field_errors %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>{{ form.non_field_errors }}</strong>
+            <button type="button" class="btn-close close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+
+
+    {% load widget_tweaks %}
+    <fieldset>
+        <div class="form-group">
+            <div class="col-md-12">
+                <div class="row justify-content-between text-left">
+                    <div class="form-group col-sm-6 flex-column d-flex"><label class="form-control-label px-3">Usuario:</label>{{ form.username | attr:'placeholder:Ingresa tu usuario' | add_class:'form-control' | remove_attr:"autofocus"}}</div>
+                    <div class="form-group col-sm-6 flex-column d-flex"><label class="form-control-label px-3">Contraseña:</label>{{ form.password | attr:'placeholder:Ingresa tu contraseña' | add_class:'form-control' | attr:'autocomplete:off'}}</div>
+                </div>
+            </div>
+        </div>
+        <br>
+    </fieldset>
+
     <button type="submit" id="submit" class="btn btn-success">Iniciar sesion</button>
 </form>
 

@@ -43,6 +43,10 @@ INSTALLED_APPS = [
     'equipos',
     'prestamo',
     'login',
+    'laboratorio',
+    'prestamo_lab',
+    'inventarios',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
